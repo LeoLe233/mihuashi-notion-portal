@@ -1,0 +1,179 @@
+{
+    "id": 174245,
+    "name": "阿穆穆",
+    "avatar_url": "https://image-assets.mihuashi.com/permanent/174245|-2023/05/05/11/FknXFjOVoAUaFdWpKy7ZO3pEBXqx.jpg",
+    "role": "painter",
+    "avatar_frame_url": "https://image-assets.mihuashi.com/avatar-frames/02_橱窗店长.png",
+    "receive_approximation_config": "all_type",
+    "receive_migroup_config": "receive_migroup",
+    "is_verified": true,
+    "comments_count": 1270,
+    "credit": {
+      "total_accept_amount": 1271,
+      "ontime_amount": 1270,
+      "complete_amount": 1270,
+      "response_ontime_amount": 1270,
+      "refreshed_at": "2019-03-22T23:04:19.000+08:00",
+      "total_rating": 5,
+      "emotion_tags": [
+        {
+          "name": "准时交稿",
+          "rank": "A"
+        },
+        {
+          "name": "沟通顺畅",
+          "rank": "A"
+        },
+        {
+          "name": "质量稳定",
+          "rank": "A"
+        },
+        {
+          "name": "认真负责",
+          "rank": "A"
+        }
+      ]
+    },
+    "artworks": [
+      {
+        "id": 19590487,
+        "url": "https://image-assets.mihuashi.com/permanent/174245|-2024/12/30/12/Fk5W-qPkwt0gLeTNQsaPtKBt37BL_4438.jpg",
+        "width": 1700,
+        "height": 1500,
+        "colors": [
+          {
+            "color": "0xbfb29d",
+            "count": 2550000
+          }
+        ],
+        "created_at": "2024-12-30T12:44:38.000+08:00",
+        "artwork_type": "image",
+        "likes_count": 2
+      },
+      {
+        "id": 19710372,
+        "url": "https://image-assets.mihuashi.com/permanent/174245|-2025/01/05/17/Fk3stx-rHlo6CTu2py-N4vnyRtNe_0210.jpg",
+        "width": 1600,
+        "height": 2400,
+        "colors": [
+          {
+            "color": "0x41283c",
+            "count": 3840000
+          }
+        ],
+        "created_at": "2025-01-05T17:02:10.000+08:00",
+        "artwork_type": "image",
+        "likes_count": 0
+      },
+      {
+        "id": 16281755,
+        "url": "https://image-assets.mihuashi.com/permanent/174245|-2024/07/24/17/Fv0_RJkkI5DU7dlF7VFyK2IGdsEw.jpg",
+        "width": 1920,
+        "height": 2016,
+        "colors": [
+          {
+            "color": "0x748187",
+            "count": 3870720
+          }
+        ],
+        "created_at": "2024-07-24T17:48:18.000+08:00",
+        "artwork_type": "image",
+        "likes_count": 5
+      }
+    ],
+    "work_schedule_state": "unset",
+    "has_draw_types": true,
+    "recent_half_year_work_schedule": null,
+    "displayable_stalls": [
+      {
+        "id": 213820,
+        "cover_url": "https://image-assets.mihuashi.com/permanent/174245|-2024/11/22/17/Fn2tg_6H7cu0lxLzMRwLErPUhuDO_0315.jpg",
+        "name": "包月一份（人设兽设都可）",
+        "limit": 1,
+        "fee_rate": "0.05",
+        "stock": 1,
+        "state": "forsale",
+        "price": 3157,
+        "deadline": "2025-07-31T23:59:59.000+08:00",
+        "sales": 0,
+        "followers_count": 18,
+        "is_fast_stall": false,
+        "presale_at": "2025-02-01T16:35:00.000+08:00",
+        "onsale_at": "2025-02-01T16:35:00.000+08:00",
+        "unshelf_at": "2025-07-30T23:59:59.000+08:00",
+        "text_design_preference": "no_select_trend",
+        "auto_restore_stock": false,
+        "stall_type": "normal",
+        "quick_stall_deadline_days": null,
+        "version": 2
+      },
+      {
+        "id": 402817,
+        "cover_url": "https://image-assets.mihuashi.com/permanent/174245|-2024/03/07/21/FvQHYvDw25rCVziucr6OLGmp5KAG.jpg",
+        "name": "没衣服穿的全身（24h）",
+        "limit": 1,
+        "fee_rate": "0.05",
+        "stock": 0,
+        "state": "soldout",
+        "price": 347,
+        "deadline": "2025-04-30T23:59:59.000+08:00",
+        "sales": 34,
+        "followers_count": 229,
+        "is_fast_stall": false,
+        "presale_at": "2024-12-18T13:05:00.000+08:00",
+        "onsale_at": "2024-12-18T13:05:00.000+08:00",
+        "unshelf_at": "2025-04-29T23:59:59.000+08:00",
+        "text_design_preference": "no_select_trend",
+        "auto_restore_stock": false,
+        "stall_type": "normal",
+        "quick_stall_deadline_days": null,
+        "version": 0
+      },
+      {
+        "id": 640338,
+        "cover_url": "https://image-assets.mihuashi.com/permanent/174245|-2024/11/21/12/FtOcKFdcCXK7_w_JLrw2WAS5h-ip_2526.jpg",
+        "name": "印象服设定制一枚（带差分）",
+        "limit": 1,
+        "fee_rate": "0.05",
+        "stock": 1,
+        "state": "forsale",
+        "price": 231,
+        "deadline": "2025-02-03T02:11:34.871+08:00",
+        "sales": 8,
+        "followers_count": 78,
+        "is_fast_stall": true,
+        "presale_at": "2025-02-01T23:15:00.000+08:00",
+        "onsale_at": "2025-02-01T23:15:00.000+08:00",
+        "unshelf_at": null,
+        "text_design_preference": "no_select_trend",
+        "auto_restore_stock": false,
+        "stall_type": "fast",
+        "quick_stall_deadline_days": 1,
+        "version": 1
+      },
+      {
+        "id": 706712,
+        "cover_url": "https://image-assets.mihuashi.com/permanent/174245|-2025/01/26/04/Fp7HIIq8nIdqy9cjRon4EtsZAz3F_2530.jpg",
+        "name": "钞快版摸鱼草头（12h）",
+        "limit": 1,
+        "fee_rate": "0.05",
+        "stock": 0,
+        "state": "soldout",
+        "price": 94,
+        "deadline": "2025-02-03T02:11:34.871+08:00",
+        "sales": 2,
+        "followers_count": 14,
+        "is_fast_stall": true,
+        "presale_at": "2025-01-30T18:32:00.000+08:00",
+        "onsale_at": "2025-01-30T18:32:00.000+08:00",
+        "unshelf_at": null,
+        "text_design_preference": "no_select_trend",
+        "auto_restore_stock": false,
+        "stall_type": "fast",
+        "quick_stall_deadline_days": 1,
+        "version": 4
+      }
+    ],
+    "created_at": "2019-03-22T23:04:19.000+08:00",
+    "is_qualification_canceled": false
+  }

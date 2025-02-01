@@ -1,10 +1,11 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { Client } from '@notionhq/client';
-import { getNotionDatabase, getArtistName, addArtist } from './notion.js';
+import { getNotionDatabase, getArtistName, addArtistToDatabase, createArtistDatabase } from './notion.js';
+
 dotenv.config();
 
-const api = axios.create({
+const mhs_api = axios.create({
     baseURL: "https://www.mihuashi.com/api/v1/users/"+process.env.MIHUASHI_ID,
     headers: {
         'Content-Type': 'application/json'
@@ -16,8 +17,10 @@ const notion = new Client({
     auth: process.env.NOTION_KEY,
 });
 
-async function getSubscribeArtistList(){
+// 获取订阅画师列表
+async function getSubscribedArtistList(){
     let pageIndex = 1;
+    let artistList = [];
     let params = {
         type: 'subscribe',
         only_free: false,
@@ -27,25 +30,44 @@ async function getSubscribeArtistList(){
         page: pageIndex
     }
     try {
-        let response = await api.get('/artists', { params });
-        console.log('获取画师列表成功，画师数量为：', response.data.total_count);
+        let response = await mhs_api.get('/artists', { params });
         while(response.data.has_more){
-            parseArtistList(response.data.artists);
+            // // 输出完整数据
+            // console.log('当前页艺术家完整数据:', JSON.stringify({
+            //     artists: response.data.artists,
+            //     pagination: {
+            //         page: pageIndex,
+            //         has_more: response.data.has_more
+            //     }
+            // }, null, 2));
+            console.log(`正在获取第${pageIndex}页画师`);
+            artistList.push(...response.data.artists);
+            console.log(`已成功获取${artistList.length}名画师`);
             pageIndex++;
             params.page = pageIndex;
-            response = await api.get('/artists', { params });
+            response = await mhs_api.get('/artists', { params });
         }
+        // for(const artist of artistList){
+        //     console.log('画师名称', artist.name);
+        //     console.log('画师id', artist.id);
+        // }
         
     } catch (error) {
         console.error('获取画师列表失败:', error);
         throw error;
     }
+    return artistList;
 }
 
-function parseArtistList(artists){
-    for(const index in artists){
-        console.log('画师名称', artists[index].name);
-        console.log('画师id', artists[index].id);
+async function initArtistDatabase(parentPageId, artistList){
+    const database = await createArtistDatabase(parentPageId);
+    console.log('数据库创建成功');
+    for(const artist of artistList){
+        await addArtistToDatabase(artist.name, artist.id, database.id);
+        console.log(`${artist.name} 添加成功`);
     }
 }
-getSubscribeArtistList();
+const artistList = await getSubscribedArtistList();
+initArtistDatabase(process.env.NOTION_PARENT_PAGE_ID, artistList);
+// getSubscribeArtistList();
+// getArtistName();

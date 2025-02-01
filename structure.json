@@ -1,0 +1,12 @@
+{
+  "user": {
+    "name": "",
+    "age": 0,
+    "active": false,
+    "hobbies": ["", ""],
+    "address": {
+      "street": "",
+      "coordinates": [0, 0]
+    }
+  }
+} 

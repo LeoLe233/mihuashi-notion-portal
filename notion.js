@@ -18,9 +18,9 @@ async function getArtistName(){
     const artists = await notion.databases.query({
         database_id: process.env.NOTION_DATABASE_ID,
         filter:{
-            property: '付款情况',
-            status: {
-                equals: '全款',
+            property: '级别',
+            select: {
+                equals: '私房菜',
             },
         },
     });
@@ -30,24 +30,10 @@ async function getArtistName(){
         const pageResult = await notion.pages.retrieve({
             page_id: id,
         });
-        console.log(pageResult.properties['画师名称'].title[0].text.content);
+        console.log(JSON.stringify(pageResult, null, 2));
+        // console.log(pageResult.properties['画师名称'].title[0].text.content);
 
     }
-}
-
-// 添加画师
-async function addArtist(name){
-    const artist = await notion.pages.create({
-        parent: {
-            database_id: process.env.NOTION_DATABASE_ID,
-        },
-        properties: {
-            '画师名称': {
-                title: [{ text: { content: name } }],
-            }
-        },
-    });
-    console.log(artist);
 }
 
 // 创建画师列表Notion数据库
@@ -65,7 +51,7 @@ async function createArtistDatabase(parentPageId){
             { 
                 type: 'text',
                 text: { 
-                    content: '画师列表' 
+                    content: '米画师关注画师列表' 
                 } 
             }
         ],
@@ -75,15 +61,45 @@ async function createArtistDatabase(parentPageId){
             },
             '米画师ID': {
                 number: {},
-            },
-            '米画师链接': {
-                url: {},
-            },
+            }
             
         },
     });
-    console.log(database);
+    return database;
 }
-createArtistDatabase();
 
-export { getNotionDatabase, getArtistName, addArtist, createArtistDatabase };
+async function addArtistToDatabase(name, artistId, databaseId){
+    const artistPage = await notion.pages.create({
+        parent: {
+            database_id: databaseId,
+        },
+        properties: {
+            '画师名称': {
+                title: [
+                { 
+                    text: { 
+                        content: name,
+                        link: {
+                            url: `https://www.mihuashi.com/profiles/${artistId}?role=painter`, // 米画师链接
+                        }
+                    } 
+                }
+            ],
+            },
+            '米画师ID': {
+                number: artistId,
+            }
+        },
+    });
+    return artistPage;
+}
+// const database = await createArtistDatabase('18d7d881646d80aa9d1ddc2a9d6bd7c7');
+// await addArtistToDatabase(database.id)
+//     .then(res => {
+//         console.log(res);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// getArtistName();
+export { getNotionDatabase, getArtistName, addArtistToDatabase, createArtistDatabase };
