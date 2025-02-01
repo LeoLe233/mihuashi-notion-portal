@@ -1,0 +1,19 @@
+{
+  "name": "mihuashi-api-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "jest": "^29.7.0"
+  }
+}
