@@ -1,7 +1,14 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { Client } from '@notionhq/client';
-import { getNotionDatabase, getArtistName, addArtistToDatabase, createArtistDatabase } from './notion.js';
+import { 
+    retrieveCreatedDatabase,  
+    getArtistName, 
+    addArtistToDatabase, 
+    createArtistDatabase,
+    isArtistInDatabase,
+    getDatabase
+} from './notion.js';
 
 dotenv.config();
 
@@ -18,7 +25,7 @@ const notion = new Client({
 });
 
 // 获取订阅画师列表
-async function getSubscribedArtistList(){
+async function getAllSubscribedArtistList(){
     let pageIndex = 1;
     let artistList = [];
     let params = {
@@ -59,15 +66,46 @@ async function getSubscribedArtistList(){
     return artistList;
 }
 
-async function initArtistDatabase(parentPageId, artistList){
-    const database = await createArtistDatabase(parentPageId);
-    console.log('数据库创建成功');
-    for(const artist of artistList){
-        await addArtistToDatabase(artist.name, artist.id, database.id);
-        console.log(`${artist.name} 添加成功`);
+async function getFirstSubscribedArtist(){
+    let pageIndex = 1;
+    let artistList = [];
+    let params = {
+        type: 'subscribe',
+        only_free: false,
+        only_invitable: false,
+        only_boutique: false,
+        remember_token: process.env.MIHUASHI_TOKEN,
+        page: pageIndex
     }
+    try {
+        let response = await mhs_api.get('/artists', { params });
+        console.log(`正在获取第1页画师`);
+        artistList.push(...response.data.artists);
+        console.log(`已成功获取${response.data.artists.length}名画师`);
+    } catch (error) {
+        console.error('获取画师列表失败:', error);
+        throw error;
+    }
+    return artistList;
 }
-const artistList = await getSubscribedArtistList();
-initArtistDatabase(process.env.NOTION_PARENT_PAGE_ID, artistList);
-// getSubscribeArtistList();
-// getArtistName();
+
+async function initArtistDatabase(artistList){
+    const database = await getDatabase(process.env.NOTION_PARENT_PAGE_ID);
+    console.log('数据库初始化链接成功');
+    // console.log(JSON.stringify(database, null, 2));
+    for(const artist of artistList){
+        const result = await isArtistInDatabase(artist);
+        if(!result){
+            await addArtistToDatabase(artist, database);
+            console.log(`${artist.name} 添加成功`);
+        }else{ // TODO 更新逻辑
+            console.log(`${artist.name} 已存在`);
+        }
+        // console.log(JSON.stringify(result, null, 2));
+    }
+    return database;
+}
+
+const artistList = await getFirstSubscribedArtist();
+const database = await initArtistDatabase(artistList);
+// await isArtistInDatabase(artistList[0], database.id);
